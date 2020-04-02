@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import NewComponent from './NewComponent'
 
-function App() {
+export default function App() {
   return (
     <div className="App">
+      <NewComponent text={'sample'}/> {/* new Component*/}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -22,5 +24,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
