@@ -12,6 +12,8 @@ class NewComponent extends Component {
     }
     this.update = this.update.bind(this)
     this.onChangeListner = this.onChangeListner.bind(this)
+    this.navigate = this.navigate.bind(this)
+    console.log(this.props)
   }
   componentDidMount() {
     //es6 fetch
@@ -30,12 +32,18 @@ class NewComponent extends Component {
         console.error(`err`, err)
       })
   }
-  update() {
-    this.setState({
-      tags: [{ name: 'grishma' }, ...this.state.tags]
-    })
+  componentWillUnmount() {
+    console.log("========componentWillUnmount========")
+    // remove listners
+    // un Subscribe
+    // cancel fetch api
+  }
 
-    console.log(this.ref.value)
+  update() {
+    // this.setState({
+    //   tags: [{ name: `grishma${Math.random()}` }, ...this.state.tags]
+    // })
+    console.log('=====>', this.input.value)
   }
 
   onChangeListner (event) {
@@ -44,19 +52,26 @@ class NewComponent extends Component {
     })
   }
 
+  navigate () {
+    this.props.history.go(-1)
+  }
+
   render() {
     const { counter, tags, value } = this.state
 
     return [<div key='1'>
       This is {counter}
       <button onClick={this.update}>Show</button>
+      {/* Uncontrolled component */}
       <input ref={(ref) => this.input = ref}></input>
+      {/* Controlled component */}
       <input onChange={this.onChangeListner}></input>
       <p>{value}</p>
     </div>,
     <ul key='2'>
       {tags.map((tag) => <li key={tag.name}>{tag.name}</li>)}
-    </ul>
+    </ul>,
+    <button key='3' onClick={this.navigate}>Navigate</button>
     ]
   }
 }

@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import NewComponent from './NewComponent'
+import { Router, Route, Switch, /* useRouteMatch, useHistory  */ } from 'react-router-dom';
+// import NewComponent from './NewComponent'
+import FormComponent from './FormComponent'
+import {createBrowserHistory} from 'history';
+// html5 web api
 import NavMenu from './NavMenu'
-
 import './App.css';
+
+export const history = createBrowserHistory();
 
 export default class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <NavMenu />
           <Switch>
-            <Route exact path="/">
-              <NewComponent />
-            </Route>
-            <Route path="/about">
-              <div>About</div>
-            </Route>
-            <Route path="/dashboard">
-              <div>dashboard</div>
-            </Route>
+            <Route exact path="/" component={FormComponent} />
+            <Route path="/about" component={About} />
+            <Route path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
 
+const About = () => {
+  return (
+    <div>About</div>
+  )
+}
+const Dashboard = () => {
+  return (
+    <div>Dashboard</div>
+  )
+}
