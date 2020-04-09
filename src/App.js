@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch, /* useRouteMatch, useHistory  */ } from 'react-router-dom';
 // import NewComponent from './NewComponent'
-import FormComponent from './FormComponent'
+// import FormComponent from './components/FormComponent'
+import UpdateColorComp from './components/UpdateColorComp'
 import {createBrowserHistory} from 'history';
 // html5 web api
-import NavMenu from './NavMenu'
+import NavMenu from './components/NavMenu'
 import './App.css';
 
 export const history = createBrowserHistory();
@@ -17,7 +18,7 @@ export default class App extends Component {
         <div>
           <NavMenu />
           <Switch>
-            <Route exact path="/" component={FormComponent} />
+            <Route exact path="/" component={UpdateColorComp} />
             <Route path="/about" component={About} />
             <Route path="/dashboard" component={Dashboard} />
           </Switch>
